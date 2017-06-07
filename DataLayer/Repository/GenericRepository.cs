@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace DataLayer.Repository.Base
 {
-    public abstract class GenericRepository<TEntity> where TEntity : class
+    public class GenericRepository<TEntity> where TEntity : class
     {
         internal  ExpensesManagerDB context;
         internal DbSet<TEntity> dbSet;

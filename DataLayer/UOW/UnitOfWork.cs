@@ -13,8 +13,6 @@ namespace DataLayer.UOW
         private bool disposed = false;
         #endregion
 
-
-
         #region"constructor         "
         public UnitOfWork(ExpensesManagerDB DB)
         {
