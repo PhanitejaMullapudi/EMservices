@@ -9,12 +9,12 @@ using System.Linq.Expressions;
 
 namespace DataLayer.Repository.Base
 {
-    public class GenericRepository<TEntity> where TEntity : class
+    public  class GenericRepository<TEntity> where TEntity : class
     {
-        internal  ExpensesManagerDB context;
+        internal ExpenseManagerDB context;
         internal DbSet<TEntity> dbSet;
 
-        public GenericRepository(ExpensesManagerDB context)
+        public GenericRepository(ExpenseManagerDB context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

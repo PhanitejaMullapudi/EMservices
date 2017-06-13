@@ -13,10 +13,10 @@ namespace DataLayer.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ExpensesManagerDB : DbContext
+    public partial class ExpenseManagerDB : DbContext
     {
-        public ExpensesManagerDB()
-            : base("name=ExpensesManagerDB")
+        public ExpenseManagerDB()
+            : base("name=ExpenseManagerDB")
         {
         }
     

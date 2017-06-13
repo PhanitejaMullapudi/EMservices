@@ -67,52 +67,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Context\EMDB.Context.cs">
+    <Compile Include="Context\ExpenseManager.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EMDB.Context.tt</DependentUpon>
+      <DependentUpon>ExpenseManager.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\EMDB.cs">
+    <Compile Include="Context\ExpenseManager.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EMDB.tt</DependentUpon>
+      <DependentUpon>ExpenseManager.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\EMDB.Designer.cs">
+    <Compile Include="Context\ExpenseManager.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>EMDB.edmx</DependentUpon>
+      <DependentUpon>ExpenseManager.edmx</DependentUpon>
     </Compile>
     <Compile Include="Context\Role.cs">
-      <DependentUpon>EMDB.tt</DependentUpon>
+      <DependentUpon>ExpenseManager.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\User.cs">
-      <DependentUpon>EMDB.tt</DependentUpon>
+      <DependentUpon>ExpenseManager.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\UserRole.cs">
-      <DependentUpon>EMDB.tt</DependentUpon>
+      <DependentUpon>ExpenseManager.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="UOW\UnitOfWork.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Context\EMDB.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>EMDB.Context.cs</LastGenOutput>
-      <DependentUpon>EMDB.edmx</DependentUpon>
-    </Content>
-    <Content Include="Context\EMDB.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>EMDB.edmx</DependentUpon>
-      <LastGenOutput>EMDB.cs</LastGenOutput>
-    </Content>
-    <Content Include="DB\ExpensesManager.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DB\ExpensesManager_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>ExpensesManager.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -128,20 +109,30 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Context\EMDB.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EMDB.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Context\EMDB.edmx.diagram">
-      <DependentUpon>EMDB.edmx</DependentUpon>
+    <EntityDeploy Include="Context\ExpenseManager.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ExpenseManager.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Context\ExpenseManager.edmx.diagram">
+      <DependentUpon>ExpenseManager.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Context\ExpenseManager.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ExpenseManager.edmx</DependentUpon>
+      <LastGenOutput>ExpenseManager.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Context\ExpenseManager.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ExpenseManager.edmx</DependentUpon>
+      <LastGenOutput>ExpenseManager.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

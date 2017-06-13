@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataService
+namespace ServiceContract.Base
 {
-    public class Class1
+    public interface IAuthenticationService
     {
     }
 }

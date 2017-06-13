@@ -9,12 +9,12 @@ namespace DataLayer.UOW
     public class UnitOfWork : IDisposable
     {
         #region"variable            "
-        private ExpensesManagerDB context;
+        private ExpenseManagerDB context;
         private bool disposed = false;
         #endregion
 
         #region"constructor         "
-        public UnitOfWork(ExpensesManagerDB DB)
+        public UnitOfWork(ExpenseManagerDB DB)
         {
             this.context = DB;
         }
