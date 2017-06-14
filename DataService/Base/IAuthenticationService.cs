@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DataContract;
+using DataContract.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace ServiceContract.Base
 {
     public interface IAuthenticationService
     {
+        ResponseDTO<UserDTO> AuthenticateUser(AuthenticationDTO Mdl);
     }
 }

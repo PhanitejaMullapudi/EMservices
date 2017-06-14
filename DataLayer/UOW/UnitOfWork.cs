@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Context;
+using DataLayer.Repository.Base;
+
 namespace DataLayer.UOW
 {
     public class UnitOfWork : IDisposable
@@ -11,6 +13,21 @@ namespace DataLayer.UOW
         #region"variable            "
         private ExpenseManagerDB context;
         private bool disposed = false;
+
+        private GenericRepository<User> userRepository;
+        
+        public GenericRepository<User> UserRepository
+        {
+            get
+            {
+
+                if (this.userRepository == null)
+                {
+                    this.userRepository = new GenericRepository<User>(context);
+                }
+                return userRepository;
+            }
+        }
         #endregion
 
         #region"constructor         "
