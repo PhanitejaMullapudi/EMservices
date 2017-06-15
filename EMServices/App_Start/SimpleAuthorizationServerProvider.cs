@@ -8,6 +8,8 @@ using Autofac.Integration.Owin;
 using Autofac;
 using ServiceContract.Base;
 using System.Security.Claims;
+using DataContract;
+using ServiceContract;
 
 namespace EMServices
 {
@@ -23,32 +25,30 @@ namespace EMServices
         {
 
             var autofacLifetimeScope = OwinContextExtensions.GetAutofacLifetimeScope(context.OwinContext);
-            var AuthenticationService = autofacLifetimeScope.Resolve<IAuthenticationService>();
+            //var AuthenticationService = autofacLifetimeScope.Resolve<IAuthenticationService>();
+            
+            //var AuthenticationService = test.Resolve<IAuthenticationService>();
 
+            IAuthenticationService AService = new AuthenticationService();
 
-            context.OwinContext.Response.Headers.Add("Access-Control-Allow-Origin", new[] { "*" });
+            if (AService != null)
+            {
+                var Resp = AService.AuthenticateUser(new AuthenticationDTO() { UserName = context.UserName, Password = context.Password });
 
-            //if (AuthenticationService != null)
-            //{
-            //    var user AuthenticationService
-            //}
-            //using (IAuthenticationService _repo = new AuthenticationService())
-            //{
-            //    IdentityUser user = await _repo.FindUser(context.UserName, context.Password);
+                if (Resp == null || Resp.Result == null || Resp.Status == false || Resp.ResposeID != 0)
+                {
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
+                    return;
+                }
 
-            //    if (user == null)
-            //    {
-            //        context.SetError("invalid_grant", "The user name or password is incorrect.");
-            //        return;
-            //    }
-            //}
+                var identity = new ClaimsIdentity(context.Options.AuthenticationType);
+                identity.AddClaim(new Claim("sub", context.UserName));
 
-            var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            identity.AddClaim(new Claim("sub", context.UserName));
-            identity.AddClaim(new Claim("role", "user"));
+                identity.AddClaim(new Claim("role", "user"));
 
-            context.Validated(identity);
+                context.Validated(identity);
 
+            }
         }
     }
 }

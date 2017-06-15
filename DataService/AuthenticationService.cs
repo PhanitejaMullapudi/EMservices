@@ -14,11 +14,11 @@ namespace ServiceContract
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private UnitOfWork UOW { get; set; }
+        private  UnitOfWork UOW { get; set; }
 
         public AuthenticationService()
         {
-            UnitOfWork UOW = new UnitOfWork(new ExpenseManagerDB());
+            UOW = new UnitOfWork(new ExpenseManagerDB());
         }
 
         public ResponseDTO<UserDTO> AuthenticateUser(AuthenticationDTO Mdl)

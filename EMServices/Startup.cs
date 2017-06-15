@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace EMServices
@@ -15,11 +16,17 @@ namespace EMServices
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
+
             ConfigureOAuth(app);
             Bootstrapper.Run();
+
             HttpConfiguration config = new HttpConfiguration();
+            //var corsAttr = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors(corsAttr);
             WebApiConfig.Register(config);
             app.UseWebApi(config);
+            
         }
         public void ConfigureOAuth(IAppBuilder app)
         {
