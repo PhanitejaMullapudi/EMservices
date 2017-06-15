@@ -8,10 +8,9 @@ namespace EMServices
 {
     public class Bootstrapper
     {
-        public static void Run()
+        public static void Run(HttpConfiguration config)
         {
-            //Configure AutoFac  
-            AutofacWebapiConfig.Initialize(GlobalConfiguration.Configuration);
+            AutofacWebapiConfig.Initialize(config);
         }
     }
 }

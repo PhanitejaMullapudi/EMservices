@@ -17,16 +17,12 @@ namespace EMServices
         public void Configuration(IAppBuilder app)
         {
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
-
-            ConfigureOAuth(app);
-            Bootstrapper.Run();
-
             HttpConfiguration config = new HttpConfiguration();
-            //var corsAttr = new EnableCorsAttribute("*", "*", "*");
-            //config.EnableCors(corsAttr);
+            ConfigureOAuth(app);
+            Bootstrapper.Run(config);
             WebApiConfig.Register(config);
             app.UseWebApi(config);
-            
+
         }
         public void ConfigureOAuth(IAppBuilder app)
         {

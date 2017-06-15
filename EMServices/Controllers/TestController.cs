@@ -9,17 +9,19 @@ using System.Web.Http;
 namespace EMServices.Controllers
 {
     [RoutePrefix("Test")]
+    
     public class TestController : ApiController
     {
-        private IAuthenticationService _authenticationService;
+        private ITestService _authenticationService;
 
-        public TestController(IAuthenticationService authenticationService)
+        public TestController(ITestService authenticationService)
         {
             _authenticationService = authenticationService;
         }
 
         [HttpGet]
         [Route("get")]
+        [Authorize]
         public IHttpActionResult Get() {
            return Ok("test");
         }

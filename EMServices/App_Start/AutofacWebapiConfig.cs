@@ -32,9 +32,14 @@ namespace EMServices
             //Register your Web API controllers.  
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
            
-            builder.RegisterType(typeof(AuthenticationService))
+            builder.RegisterType<AuthenticationService>()
                    .As(typeof(IAuthenticationService))
                    .InstancePerRequest();
+
+            builder.RegisterType<TestService>()
+                   .As(typeof(ITestService))
+                   .InstancePerRequest();
+            
 
             //Set the dependency resolver to be Autofac.  
             Container = builder.Build();
