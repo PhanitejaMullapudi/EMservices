@@ -25,7 +25,7 @@ namespace EMServices
 
             var autofacLifetimeScope = OwinContextExtensions.GetAutofacLifetimeScope(context.OwinContext);
             //var AuthenticationService = autofacLifetimeScope.Resolve<IAuthenticationService>();
-            
+
             //var AuthenticationService = test.Resolve<IAuthenticationService>();
 
             IAuthenticationService AService = new AuthenticationService();
@@ -43,7 +43,11 @@ namespace EMServices
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);
                 identity.AddClaim(new Claim("sub", context.UserName));
 
-                identity.AddClaim(new Claim("role", "user"));
+                if (Resp.Result.Roles != null)
+                {
+                    foreach (var Role in Resp.Result.Roles)
+                        identity.AddClaim(new Claim("role", Role));
+                }
 
                 context.Validated(identity);
 

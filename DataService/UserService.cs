@@ -1,12 +1,14 @@
-﻿using System;
+﻿using ServiceContract.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ServiceContract.Base
+namespace ServiceContract
 {
-    public interface ITestService
+    public class UserService : IUserService
     {
+
     }
 }

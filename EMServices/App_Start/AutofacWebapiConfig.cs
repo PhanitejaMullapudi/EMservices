@@ -36,8 +36,8 @@ namespace EMServices
                    .As(typeof(IAuthenticationService))
                    .InstancePerRequest();
 
-            builder.RegisterType<TestService>()
-                   .As(typeof(ITestService))
+            builder.RegisterType<UserService>()
+                   .As(typeof(IUserService))
                    .InstancePerRequest();
             
 

@@ -28,6 +28,21 @@ namespace DataLayer.UOW
                 return userRepository;
             }
         }
+
+        private GenericRepository<Role> roleRepository;
+
+        public GenericRepository<Role> RoleRepository
+        {
+            get
+            {
+
+                if (this.roleRepository == null)
+                {
+                    this.roleRepository = new GenericRepository<Role>(context);
+                }
+                return roleRepository;
+            }
+        }
         #endregion
 
         #region"constructor         "

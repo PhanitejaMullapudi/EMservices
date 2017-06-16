@@ -14,7 +14,7 @@ namespace ServiceContract
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private  UnitOfWork UOW { get; set; }
+        private UnitOfWork UOW { get; set; }
 
         public AuthenticationService()
         {
@@ -25,13 +25,20 @@ namespace ServiceContract
         {
             var Resp = new ResponseDTO<UserDTO>();
 
-            var User = UOW.UserRepository.Get(a => a.UserName == Mdl.UserName && a.Password == Mdl.Password).SingleOrDefault();
+            var User = UOW.UserRepository.Get(a => a.UserName == Mdl.UserName && a.Password == Mdl.Password, includeProperties: "UserRoles").SingleOrDefault();
 
             if (User != null)
             {
+                var UserRoles = User.UserRoles.Select(a => a.RoleID).ToList();
                 Resp.Result = TinyMapper.Map<User, UserDTO>(User);
                 Resp.ResposeID = 0;
                 Resp.Status = true;
+
+                if (UserRoles != null)
+                {
+                    Resp.Result.Roles = UOW.RoleRepository.Get(a => UserRoles.Contains(a.RoleID))?.Select(a => a.RoleCode).ToList();
+                }
+
             }
             return Resp;
         }
